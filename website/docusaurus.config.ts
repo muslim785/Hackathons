@@ -234,13 +234,13 @@ const config: Config = {
 
             items: [
 
-              {
+                            {
 
-                label: 'GitHub',
+                              label: 'GitHub',
 
-                href: 'https' // Placeholder
+                              href: 'https://github.com/muslim785/Hackathons' // Placeholder
 
-              },
+                            },
 
             ],
 
