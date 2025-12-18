@@ -1,5 +1,5 @@
 ---
-title: "1. Introduction to ROS 2"
+title: "1. Introduction to ROS 002"
 ---
 
 ## Learning Objectives
