@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-modules/ros2-textbook/chapter-2-communication" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Chapter 2: ROS 2 Communication Model | Physical AI &amp; Humanoid Robotics Textbook</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://muslim785.github.io/Hackathons/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://muslim785.github.io/Hackathons/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://muslim785.github.io/Hackathons/docs/modules/ros2-textbook/chapter-2-communication"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Chapter 2: ROS 2 Communication Model | Physical AI &amp; Humanoid Robotics Textbook"><meta data-rh="true" name="description" content="Learning Objectives"><meta data-rh="true" property="og:description" content="Learning Objectives"><link data-rh="true" rel="icon" href="/Hackathons/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://muslim785.github.io/Hackathons/docs/modules/ros2-textbook/chapter-2-communication"><link data-rh="true" rel="alternate" href="https://muslim785.github.io/Hackathons/docs/modules/ros2-textbook/chapter-2-communication" hreflang="en"><link data-rh="true" rel="alternate" href="https://muslim785.github.io/Hackathons/docs/modules/ros2-textbook/chapter-2-communication" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Chapter 2: ROS 2 Communication Model","item":"https://muslim785.github.io/Hackathons/docs/modules/ros2-textbook/chapter-2-communication"}]}</script><link rel="stylesheet" href="/Hackathons/assets/css/styles.841ec4a4.css">
+<script src="/Hackathons/assets/js/runtime~main.03615b8f.js" defer="defer"></script>
+<script src="/Hackathons/assets/js/main.ff257561.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/Hackathons/"><div class="navbar__logo"><img src="/Hackathons/img/logo.svg" alt="Physical AI Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/Hackathons/img/logo.svg" alt="Physical AI Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Physical AI &amp; Humanoid Robotics</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/Hackathons/docs/modules/ros2-textbook/chapter-1-foundations">Textbook</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://github.com/muslim785/Hackathons" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/Hackathons/docs/modules/ros2-textbook/chapter-1-foundations"><span title="Physical AI &amp; Humanoid Robotics Textbook" class="categoryLinkLabel_W154">Physical AI &amp; Humanoid Robotics Textbook</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" tabindex="0" href="/Hackathons/docs/modules/ros2-textbook/chapter-1-foundations"><span title="Module 1 – The Robotic Nervous System (ROS 2)" class="categoryLinkLabel_W154">Module 1 – The Robotic Nervous System (ROS 2)</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Hackathons/docs/modules/ros2-textbook/chapter-1-foundations"><span title="Chapter 1: Physical AI and ROS 2 Foundations" class="linkLabel_WmDU">Chapter 1: Physical AI and ROS 2 Foundations</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/Hackathons/docs/modules/ros2-textbook/chapter-2-communication"><span title="Chapter 2: ROS 2 Communication Model" class="linkLabel_WmDU">Chapter 2: ROS 2 Communication Model</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Hackathons/docs/modules/ros2-textbook/chapter-3-python-integration"><span title="Chapter 3: Python AI Agents and rclpy" class="linkLabel_WmDU">Chapter 3: Python AI Agents and rclpy</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/Hackathons/docs/modules/ros2-textbook/chapter-4-urdf-structure"><span title="Chapter 4: URDF and Humanoid Structure" class="linkLabel_WmDU">Chapter 4: URDF and Humanoid Structure</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/Hackathons/docs/module-2/intro"><span title="Module 2 – The Digital Twin (Gazebo &amp; Unity)" class="categoryLinkLabel_W154">Module 2 – The Digital Twin (Gazebo &amp; Unity)</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/Hackathons/docs/module-3/intro"><span title="Module 3 – The AI-Robot Brain (NVIDIA Isaac)" class="categoryLinkLabel_W154">Module 3 – The AI-Robot Brain (NVIDIA Isaac)</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/Hackathons/docs/module-4-vla/"><span title="Module 4 – Vision-Language-Action (VLA)" class="categoryLinkLabel_W154">Module 4 – Vision-Language-Action (VLA)</span></a></div></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/Hackathons/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Physical AI &amp; Humanoid Robotics Textbook</span></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Module 1 – The Robotic Nervous System (ROS 2)</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Chapter 2: ROS 2 Communication Model</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Chapter 2: ROS 2 Communication Model</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="learning-objectives">Learning Objectives<a href="#learning-objectives" class="hash-link" aria-label="Direct link to Learning Objectives" title="Direct link to Learning Objectives" translate="no">​</a></h2>
+<ul>
+<li class="">Understand the fundamental ROS 2 communication patterns: nodes, topics, services, and actions</li>
+<li class="">Explain the differences between asynchronous (topics) and synchronous (services, actions) communication</li>
+<li class="">Describe how execution graphs organize ROS 2 components</li>
+<li class="">Apply appropriate communication patterns to humanoid robot sensor and actuator scenarios</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="introduction">Introduction<a href="#introduction" class="hash-link" aria-label="Direct link to Introduction" title="Direct link to Introduction" translate="no">​</a></h2>
+<p>In this chapter, we&#x27;ll explore the core communication mechanisms that make ROS 2 powerful for robotics applications. You&#x27;ll learn how different components of a robot system communicate with each other through nodes, topics, services, and actions. Understanding these patterns is essential for designing effective robotic systems, particularly for humanoid robots with complex sensorimotor requirements.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="main-content">Main Content<a href="#main-content" class="hash-link" aria-label="Direct link to Main Content" title="Direct link to Main Content" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="nodes-and-execution-graphs">Nodes and Execution Graphs<a href="#nodes-and-execution-graphs" class="hash-link" aria-label="Direct link to Nodes and Execution Graphs" title="Direct link to Nodes and Execution Graphs" translate="no">​</a></h3>
+<p>In ROS 2, a <strong>node</strong> is a process that performs computation. Nodes are the fundamental building blocks of a ROS 2 system. Each node typically handles a specific task, such as sensor data processing, control algorithm execution, or user interface management.</p>
+<p>Nodes organize into an <strong>execution graph</strong>, which represents the structure and communication flow of your robotic system. This graph shows:</p>
+<ul>
+<li class="">Which nodes exist in your system</li>
+<li class="">How nodes communicate with each other</li>
+<li class="">The flow of data between components</li>
+<li class="">Dependencies between different system components</li>
+</ul>
+<p>The execution graph is dynamic - nodes can be added, removed, or reconfigured while the system runs, providing flexibility for different robot configurations and operational modes.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="topics-asynchronous-communication">Topics: Asynchronous Communication<a href="#topics-asynchronous-communication" class="hash-link" aria-label="Direct link to Topics: Asynchronous Communication" title="Direct link to Topics: Asynchronous Communication" translate="no">​</a></h3>
+<p><strong>Topics</strong> provide asynchronous, many-to-many communication in ROS 2. They follow a publish-subscribe pattern where:</p>
+<ul>
+<li class="">Publishers send messages to a topic without knowing who will receive them</li>
+<li class="">Subscribers receive messages from a topic without knowing who sent them</li>
+<li class="">Multiple publishers can send to the same topic</li>
+<li class="">Multiple subscribers can receive from the same topic</li>
+</ul>
+<p>Topics are ideal for:</p>
+<ul>
+<li class="">Sensor data distribution (e.g., camera images, laser scans)</li>
+<li class="">Continuous state updates (e.g., robot position, joint angles)</li>
+<li class="">Event notifications (e.g., button presses, obstacle detection)</li>
+</ul>
+<p>The asynchronous nature means publishers and subscribers don&#x27;t need to run simultaneously - messages are queued until subscribers are available.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="services-synchronous-communication">Services: Synchronous Communication<a href="#services-synchronous-communication" class="hash-link" aria-label="Direct link to Services: Synchronous Communication" title="Direct link to Services: Synchronous Communication" translate="no">​</a></h3>
+<p><strong>Services</strong> provide synchronous, request-response communication between two nodes. This pattern involves:</p>
+<ul>
+<li class="">A client node sends a request to a service</li>
+<li class="">A server node processes the request and sends a response back</li>
+<li class="">The client waits for the response before continuing</li>
+</ul>
+<p>Services are appropriate for:</p>
+<ul>
+<li class="">Operations with a clear beginning and end</li>
+<li class="">Requesting specific computations (e.g., path planning, image processing)</li>
+<li class="">Configuration changes that require confirmation</li>
+<li class="">Any operation where the client needs to know the result before proceeding</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="actions-synchronous-with-feedback">Actions: Synchronous with Feedback<a href="#actions-synchronous-with-feedback" class="hash-link" aria-label="Direct link to Actions: Synchronous with Feedback" title="Direct link to Actions: Synchronous with Feedback" translate="no">​</a></h3>
+<p><strong>Actions</strong> are goal-oriented communications that provide feedback during execution and can be canceled. They combine features of both topics and services:</p>
+<ul>
+<li class="">A client sends a goal to an action server</li>
+<li class="">The server provides feedback about progress during execution</li>
+<li class="">The client can cancel the goal before completion</li>
+<li class="">The server returns a result when the goal completes</li>
+</ul>
+<p>Actions are perfect for:</p>
+<ul>
+<li class="">Long-running operations (e.g., navigation to a distant location)</li>
+<li class="">Tasks where progress monitoring is important (e.g., arm trajectory execution)</li>
+<li class="">Operations that might need interruption (e.g., emergency stops)</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="communication-pattern-selection">Communication Pattern Selection<a href="#communication-pattern-selection" class="hash-link" aria-label="Direct link to Communication Pattern Selection" title="Direct link to Communication Pattern Selection" translate="no">​</a></h3>
+<p>Choosing the right communication pattern depends on your specific use case:</p>
+<ul>
+<li class="">
+<p><strong>Use Topics</strong> when you need:</p>
+<ul>
+<li class="">Continuous data flow</li>
+<li class="">Multiple subscribers to the same information</li>
+<li class="">Decoupled timing between publishers and subscribers</li>
+<li class="">Example: Publishing camera images for multiple vision algorithms</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Use Services</strong> when you need:</p>
+<ul>
+<li class="">A specific response to a request</li>
+<li class="">Confirmation that an operation completed</li>
+<li class="">Synchronous behavior</li>
+<li class="">Example: Requesting a map from a mapping service</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Use Actions</strong> when you need:</p>
+<ul>
+<li class="">Long-running operations with progress feedback</li>
+<li class="">Ability to cancel operations</li>
+<li class="">Asynchronous behavior with result guarantees</li>
+<li class="">Example: Moving a robot arm to a specific position with progress updates</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="key-concepts">Key Concepts<a href="#key-concepts" class="hash-link" aria-label="Direct link to Key Concepts" title="Direct link to Key Concepts" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="node">Node<a href="#node" class="hash-link" aria-label="Direct link to Node" title="Direct link to Node" translate="no">​</a></h3>
+<p>A <strong>node</strong> is a process that performs computation in ROS 2. Nodes are organized into packages to form a ROS system. Each node typically handles a specific task or function.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="topic">Topic<a href="#topic" class="hash-link" aria-label="Direct link to Topic" title="Direct link to Topic" translate="no">​</a></h3>
+<p>A <strong>topic</strong> is an asynchronous, many-to-many communication mechanism in ROS 2. Multiple nodes can publish to or subscribe to the same topic without direct knowledge of each other.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="service">Service<a href="#service" class="hash-link" aria-label="Direct link to Service" title="Direct link to Service" translate="no">​</a></h3>
+<p>A <strong>service</strong> is a synchronous, request-response communication pattern in ROS 2 between two nodes. The client waits for a response from the service server.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="action">Action<a href="#action" class="hash-link" aria-label="Direct link to Action" title="Direct link to Action" translate="no">​</a></h3>
+<p>An <strong>action</strong> is a goal-oriented communication pattern that provides feedback during execution and can be canceled. It&#x27;s ideal for long-running operations.</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="execution-graph">Execution Graph<a href="#execution-graph" class="hash-link" aria-label="Direct link to Execution Graph" title="Direct link to Execution Graph" translate="no">​</a></h3>
+<p>The <strong>execution graph</strong> represents the structure and communication flow of a ROS 2 system, showing how nodes connect and communicate with each other.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="humanoid-specific-examples">Humanoid-Specific Examples<a href="#humanoid-specific-examples" class="hash-link" aria-label="Direct link to Humanoid-Specific Examples" title="Direct link to Humanoid-Specific Examples" translate="no">​</a></h2>
+<p>Consider a humanoid robot performing a reaching task:</p>
+<p><strong>Topics</strong> for continuous monitoring:</p>
+<ul>
+<li class="">Joint position sensors publish to <code>/joint_states</code> for multiple controllers to monitor</li>
+<li class="">IMU data publishes to <code>/imu/data</code> for balance and orientation systems</li>
+<li class="">Camera images publish to <code>/camera/image_raw</code> for vision processing nodes</li>
+</ul>
+<p><strong>Services</strong> for discrete operations:</p>
+<ul>
+<li class="">A trajectory planner service accepts requests to compute joint trajectories</li>
+<li class="">A configuration service allows updating robot parameters with confirmation</li>
+<li class="">A calibration service performs sensor calibration and reports results</li>
+</ul>
+<p><strong>Actions</strong> for goal-oriented tasks:</p>
+<ul>
+<li class="">An arm controller action accepts reaching goals and provides progress feedback</li>
+<li class="">A walking controller action manages complex locomotion with interrupt capability</li>
+<li class="">A grasping action executes manipulation tasks with force feedback</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="summary">Summary<a href="#summary" class="hash-link" aria-label="Direct link to Summary" title="Direct link to Summary" translate="no">​</a></h2>
+<p>This chapter covered the core communication patterns in ROS 2:</p>
+<ul>
+<li class="">Nodes as the fundamental computational units</li>
+<li class="">Topics for asynchronous, many-to-many communication</li>
+<li class="">Services for synchronous request-response interactions</li>
+<li class="">Actions for goal-oriented operations with feedback</li>
+</ul>
+<p>You now understand when to use each communication pattern and how they enable complex robotic behaviors in humanoid systems.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="next-steps">Next Steps<a href="#next-steps" class="hash-link" aria-label="Direct link to Next Steps" title="Direct link to Next Steps" translate="no">​</a></h2>
+<p>The next chapter will explore how Python-based AI agents connect to ROS 2 systems using the rclpy client library, bridging your AI development skills with robotic systems.</p>
+<ul>
+<li class="">Continue to <a class="" href="/Hackathons/docs/modules/ros2-textbook/chapter-3-python-integration">Chapter 3: Python AI Agents and rclpy</a></li>
+<li class="">Return to <a class="" href="/Hackathons/docs/modules/ros2-textbook/chapter-1-foundations">Chapter 1: Physical AI and ROS 2 Foundations</a></li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="further-reading">Further Reading<a href="#further-reading" class="hash-link" aria-label="Direct link to Further Reading" title="Direct link to Further Reading" translate="no">​</a></h2>
+<ul>
+<li class="">ROS 2 Documentation: Nodes and Topics</li>
+<li class="">ROS 2 Documentation: Services and Actions</li>
+<li class="">&quot;Effective Robotics Programming with ROS&quot; by Anil Mahtani</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/muslim785/Hackathons/tree/main/docs/modules/ros2-textbook/chapter-2-communication.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/Hackathons/docs/modules/ros2-textbook/chapter-1-foundations"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Chapter 1: Physical AI and ROS 2 Foundations</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/Hackathons/docs/modules/ros2-textbook/chapter-3-python-integration"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Chapter 3: Python AI Agents and rclpy</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#learning-objectives" class="table-of-contents__link toc-highlight">Learning Objectives</a></li><li><a href="#introduction" class="table-of-contents__link toc-highlight">Introduction</a></li><li><a href="#main-content" class="table-of-contents__link toc-highlight">Main Content</a><ul><li><a href="#nodes-and-execution-graphs" class="table-of-contents__link toc-highlight">Nodes and Execution Graphs</a></li><li><a href="#topics-asynchronous-communication" class="table-of-contents__link toc-highlight">Topics: Asynchronous Communication</a></li><li><a href="#services-synchronous-communication" class="table-of-contents__link toc-highlight">Services: Synchronous Communication</a></li><li><a href="#actions-synchronous-with-feedback" class="table-of-contents__link toc-highlight">Actions: Synchronous with Feedback</a></li><li><a href="#communication-pattern-selection" class="table-of-contents__link toc-highlight">Communication Pattern Selection</a></li></ul></li><li><a href="#key-concepts" class="table-of-contents__link toc-highlight">Key Concepts</a><ul><li><a href="#node" class="table-of-contents__link toc-highlight">Node</a></li><li><a href="#topic" class="table-of-contents__link toc-highlight">Topic</a></li><li><a href="#service" class="table-of-contents__link toc-highlight">Service</a></li><li><a href="#action" class="table-of-contents__link toc-highlight">Action</a></li><li><a href="#execution-graph" class="table-of-contents__link toc-highlight">Execution Graph</a></li></ul></li><li><a href="#humanoid-specific-examples" class="table-of-contents__link toc-highlight">Humanoid-Specific Examples</a></li><li><a href="#summary" class="table-of-contents__link toc-highlight">Summary</a></li><li><a href="#next-steps" class="table-of-contents__link toc-highlight">Next Steps</a></li><li><a href="#further-reading" class="table-of-contents__link toc-highlight">Further Reading</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer ai-card footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col col--4"><div class="footer__col"><h4 class="footer__title gradient-text">Docs</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item interactive-element" label="Textbook" href="/Hackathons/docs/modules/ros2-textbook/chapter-1-foundations">Textbook</a></li><li class="footer__item"><a class="footer__link-item interactive-element" label="Module 2: Digital Twin" href="/Hackathons/docs/module-2/intro">Module 2: Digital Twin</a></li><li class="footer__item"><a class="footer__link-item interactive-element" label="Module 3: AI Brain" href="/Hackathons/docs/module-3/intro">Module 3: AI Brain</a></li></ul></div></div><div class="col col--4"><div class="footer__col"><h4 class="footer__title gradient-text">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item interactive-element" label="Stack Overflow" href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer">Stack Overflow</a></li><li class="footer__item"><a class="footer__link-item interactive-element" label="Discord" href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer">Discord</a></li><li class="footer__item"><a class="footer__link-item interactive-element" label="Twitter" href="https://twitter.com/docusaurus" target="_blank" rel="noopener noreferrer">Twitter</a></li></ul></div></div><div class="col col--4"><div class="footer__col"><h4 class="footer__title gradient-text">More</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item interactive-element" label="GitHub" href="https://github.com/facebook/docusaurus" target="_blank" rel="noopener noreferrer">GitHub</a></li></ul></div></div></div><div class="footer__bottom text--center padding-top--md" style="opacity:0"><div class="footer__copyright">Copyright © 2025 Physical AI &amp; Humanoid Robotics Textbook. Built with Docusaurus.</div><div class="footer__branding margin-top--sm"><div class="footer-logo">🤖 Physical AI &amp; Humanoid Robotics</div></div></div></div></footer><div class="chat-launcher-container"><button class="chat-launcher-button ai-card interactive-element" aria-label="Open chat" tabindex="0" style="transform:scale(0)"><span class="chat-icon">💬</span></button></div></div>
+</body>
+</html>
