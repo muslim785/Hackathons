@@ -1,55 +1,63 @@
-<!--
----
-Sync Impact Report
----
-- Version Change: 1.0.0 → 1.1.0
-- Added Principles:
-  - I. Interdisciplinary Collaboration
-  - II. Ethical AI Development
-  - III. Robustness & Safety Engineering
-  - IV. Human-Robot Interaction (HRI) Design
-  - V. Continuous Learning & Adaptation
-- Added Sections:
-  - Technical Standards
-  - Research & Development Workflow
-- Modified Sections:
-  - Governance
-- Templates Requiring Review:
-  - ⚠ .specify/templates/plan-template.md
-  - ⚠ .specify/templates/spec-template.md
-  - ⚠ .specify/templates/tasks-template.md
-- Follow-up TODOs:
-  - TODO(RATIFICATION_DATE): Set original adoption date.
+<!-- SYNC IMPACT REPORT
+Version change: N/A -> 1.0.0
+Modified principles: N/A (new constitution)
+Added sections: All sections (new constitution)
+Removed sections: N/A
+Templates requiring updates:
+  - .specify/templates/plan-template.md ✅ updated
+  - .specify/templates/spec-template.md ✅ updated
+  - .specify/templates/tasks-template.md ✅ updated
+  - .specify/templates/commands/*.md ✅ reviewed
+  - README.md ⚠ pending
+Follow-up TODOs: None
 -->
-# Physical AI & Humanoid Robotics Constitution
+
+# Physical AI & Humanoid Robotics Textbook Constitution
 
 ## Core Principles
 
-### I. Interdisciplinary Collaboration
-Promote cross-domain integration between AI, robotics, biomechanics, cognitive science, simulation engineering, design, and ethics. Encourage collaborative authoring between humans and AI agents using agent-native workflows.
+### Physical AI as Embodied Intelligence
+Physical AI = embodied intelligence governed by physical laws. All implementations must respect the constraints and opportunities provided by physical reality, with algorithms designed to work within real-world physics rather than abstract mathematical spaces.
 
-### II. Ethical AI Development
-Mandate ethical considerations for every chapter and technical guide. Include principles of human well-being, transparency, autonomy, privacy, fairness, bias detection, and accountability in all content. Require that examples involving humanoids reflect responsible AI deployment.
+### Robots as Distributed Systems
+Robots are distributed systems, not single programs. Each robotic component must function as an independent service with well-defined interfaces, enabling modular development, testing, and replacement of individual components without affecting the whole system.
 
-### III. Robustness & Safety Engineering
-Highlight reliability, safety, and risk-mitigation as foundational aspects of robotics and humanoid system design. Emphasize safety testing, failure mode analysis, physical constraints, simulation-based validation, and real-world robustness. Chapters must teach students safe operations in ROS 2, Isaac, Gazebo, and real hardware.
+### Middleware and Structure Precedence
+Middleware and structure come before intelligence. Robotic systems must establish reliable communication, coordination, and data flow mechanisms before implementing intelligent behaviors, ensuring stable foundations for higher-level capabilities.
 
-### IV. Human-Robot Interaction (HRI) Design
-Promote intuitive, natural, predictable, and trust-driven interaction patterns. Require discussion of psychological, social, ergonomic, and cultural considerations in humanoid design. Include guidelines for multimodal interfaces—vision, speech, gestures, touch, and language models.
+### Specs as Source of Truth
+Specifications are the source of truth, not prose or code. All system behavior, interfaces, and requirements must be formally documented in specifications before implementation, with code serving as the executable manifestation of these specifications.
 
-### V. Continuous Learning & Adaptation
-Articulate principles for systems that learn, adapt, and evolve using physical experience and simulation reinforcement. Include coverage of self-improving pipelines, domain randomization, VLA models, and embodied learning loops.
+### First Principles Pedagogy
+Teach from first principles to systems. Educational content must ground learners in fundamental concepts before advancing to complex applications, ensuring deep understanding of underlying mechanisms that govern Physical AI and humanoid robotics.
+
+### AI-Native Content Integration
+All content must be spec-driven with no undocumented manual steps. Book content and RAG chatbot share the same source, with chatbot answers grounded in retrieved text only to ensure accuracy and consistency.
 
 ## Technical Standards
 
-Use of ROS 2, URDF, Gazebo/Unity, and NVIDIA Isaac as foundational ecosystem tools. Detail hardware-software co-design standards for humanoids, documentation templates for motion planning, perception pipelines, safety protocols, and simulation configurations. Define versioning, reproducibility, and GitHub Pages deployment requirements.
+### Tooling Invariants
+Documentation systems must use Docusaurus, specifications managed with Spec-Kit Plus, AI authoring with Claude Code, backend implemented in FastAPI, and storage utilizing Neon Postgres with Qdrant vector database. All projects must adhere to these foundational tools to ensure consistency and interoperability.
 
-## Research & Development Workflow
+### RAG System Guarantees
+No hallucinated answers are permitted. The RAG system must respect selected-text-only queries and explicitly state "not enough context" when applicable, maintaining trustworthiness and preventing misinformation.
 
-Define a hypothesis-driven chapter development process. Enforce iterative agent-assisted writing cycles with peer review between human authors and Claude Code subagents. Establish standards for knowledge transfer, citation, and reproducible pedagogy.
+### Reproducible Workflows
+All processes must be reproducible from specifications alone, with no hidden dependencies or undocumented manual steps. Every transformation from concept to deployed system must be traceable and repeatable by others.
+
+## Development Workflow
+
+### Content and Code Alignment
+Educational content, specifications, code implementations, and intelligent agents must be developed in tight alignment, with changes propagating consistently across all components to maintain system coherence.
+
+### Specification-Driven Implementation
+Before any code is written, specifications must define the complete behavioral contract, interfaces, data flows, and expected outcomes. Implementation serves only to realize the specified behavior.
+
+### Integrated Testing Approach
+Testing must validate both educational objectives and system functionality, ensuring that learning outcomes align with operational capabilities and that the system behaves as specified.
 
 ## Governance
 
-Define author, reviewer, and AI subagent roles and responsibilities. Describe the decision-making process for curriculum updates and establish quality benchmarks for diagrams, code blocks, simulations, and HRI examples. All contributions must align with this Constitution before being merged into the master branch.
+This constitution establishes the fundamental principles governing all aspects of the Physical AI & Humanoid Robotics Textbook project. All team members, contributors, and stakeholders must adhere to these principles in their work. Amendments to this constitution require explicit documentation of the change, justification based on project evolution needs, and approval from project leadership. All development activities, code reviews, and quality assessments must verify compliance with these principles. The pedagogical effectiveness and technical correctness of all content must be validated against these foundational principles.
 
-**Version**: 1.1.0 | **Ratified**: TODO(RATIFICATION_DATE): Set original adoption date. | **Last Amended**: 2025-12-06
+**Version**: 1.0.0 | **Ratified**: 2025-12-18 | **Last Amended**: 2025-12-18

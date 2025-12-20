@@ -1,0 +1,176 @@
+import React, { useState } from 'react';
+import clsx from 'clsx';
+import Link from '@docusaurus/Link';
+import { useLocation } from '@docusaurus/router';
+import { useAuth } from '@clerk/clerk-react';
+import { motion } from 'framer-motion';
+import styles from './styles.module.css';
+
+function HeaderWrapper(props) {
+  const { pathname } = useLocation();
+  const { isSignedIn, isLoaded } = useAuth();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Navigation items
+  const navItems = [
+    { label: 'Textbook', to: '/docs/modules/ros2-textbook/chapter-1-foundations' },
+    { label: 'Module 2', to: '/docs/module-2/intro' },
+    { label: 'Module 3', to: '/docs/module-3/intro' },
+  ];
+
+  return (
+    <header className={clsx('navbar', 'navbar--fixed-top', styles.navbar)}>
+      <div className="navbar__inner">
+        <div className="navbar__items">
+          <Link className="navbar__brand" to="/" aria-label="Home">
+            <motion.div
+              className={clsx('navbar__title', 'text--truncate', 'gradient-text')}
+              whileHover={{ scale: 1.02 }}
+            >
+              <span className="navbar-logo">🤖</span> Physical AI & Humanoid Robotics
+            </motion.div>
+          </Link>
+        </div>
+
+        <div className="navbar__items navbar__items--right">
+          {/* Search input */}
+          <div className="navbar__item">
+            <input
+              type="text"
+              placeholder="Search..."
+              className={clsx('form-control', styles.navbarSearchInput)}
+              aria-label="Search"
+            />
+          </div>
+
+          {/* Auth buttons */}
+          {!isLoaded ? (
+            <div className="navbar__item">
+              <div className="spinner" style={{ width: '20px', height: '20px' }}></div>
+            </div>
+          ) : isSignedIn ? (
+            <>
+              <div className="navbar__item">
+                <Link
+                  className="button button--secondary button--sm"
+                  to="/docs/modules/ros2-textbook/chapter-1-foundations"
+                >
+                  Dashboard
+                </Link>
+              </div>
+              <div className="navbar__item">
+                <Link
+                  className="button button--primary button--sm"
+                  to="/user/profile"
+                >
+                  Profile
+                </Link>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="navbar__item">
+                <Link
+                  className="button button--secondary button--sm"
+                  to="/signin"
+                >
+                  Sign In
+                </Link>
+              </div>
+              <div className="navbar__item">
+                <Link
+                  className="button button--primary button--sm"
+                  to="/signup"
+                >
+                  Sign Up
+                </Link>
+              </div>
+            </>
+          )}
+
+          {/* Mobile menu toggle */}
+          <div className="navbar__item navbar__item--mobile">
+            <button
+              className={clsx('navbar__toggle', styles.navbarToggle)}
+              type="button"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle navigation menu"
+            >
+              <svg className={styles.navbarToggleIcon} viewBox="0 0 30 30" aria-hidden="true">
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeMiterlimit="10"
+                  strokeWidth="2"
+                  d="M4 7h22M4 15h22M4 23h22"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      {isMenuOpen && (
+        <motion.div
+          className={clsx('navbar__mobile-items', styles.navbarMobileItems)}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+        >
+          {navItems.map((item, idx) => (
+            <div key={idx} className="navbar__item">
+              <Link
+                className={clsx('navbar__item', {
+                  'navbar__link--active': pathname === item.to,
+                })}
+                to={item.to}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            </div>
+          ))}
+
+          {!isLoaded ? (
+            <div className="navbar__item">
+              <div className="spinner"></div>
+            </div>
+          ) : isSignedIn ? (
+            <>
+              <div className="navbar__item">
+                <Link to="/dashboard" onClick={() => setIsMenuOpen(false)}>
+                  Dashboard
+                </Link>
+              </div>
+              <div className="navbar__item">
+                <Link to="/user/profile" onClick={() => setIsMenuOpen(false)}>
+                  Profile
+                </Link>
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="navbar__item">
+                <Link to="/signin" onClick={() => setIsMenuOpen(false)}>
+                  Sign In
+                </Link>
+              </div>
+              <div className="navbar__item">
+                <Link
+                  className="button button--primary"
+                  to="/signup"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Sign Up
+                </Link>
+              </div>
+            </>
+          )}
+        </motion.div>
+      )}
+    </header>
+  );
+}
+
+export default React.memo(HeaderWrapper);

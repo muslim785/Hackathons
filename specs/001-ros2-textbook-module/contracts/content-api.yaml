@@ -1,0 +1,78 @@
+# Educational Content API Contract
+
+## Module Content Endpoint
+
+### GET /api/modules/ros2-textbook/chapter/{chapterNumber}
+
+**Description**: Retrieve educational content for a specific chapter of the ROS 2 textbook module
+
+**Path Parameters**:
+- `chapterNumber`: Integer (1-4) - The chapter number to retrieve
+
+**Response**:
+```json
+{
+  "chapter": {
+    "number": 1,
+    "title": "Physical AI and ROS 2 Foundations",
+    "content": "Markdown content of the chapter",
+    "learning_objectives": [
+      "Understand Physical AI and embodied intelligence",
+      "Explain ROS 2 as distributed robotic middleware"
+    ],
+    "key_concepts": [
+      "Physical AI vs digital AI",
+      "Middleware necessity for robots",
+      "ROS 2 philosophy"
+    ],
+    "next_chapter": 2
+  }
+}
+```
+
+**Success Response**:
+- Status: 200 OK
+- Content-Type: application/json
+
+**Error Responses**:
+- 404 Not Found: Chapter number not in range 1-4
+- 500 Internal Server Error: Content retrieval failed
+
+### GET /api/modules/ros2-textbook/outline
+
+**Description**: Retrieve the outline of the entire ROS 2 textbook module
+
+**Response**:
+```json
+{
+  "module": {
+    "title": "Module 1 – The Robotic Nervous System (ROS 2)",
+    "chapters": [
+      {
+        "number": 1,
+        "title": "Physical AI and ROS 2 Foundations"
+      },
+      {
+        "number": 2,
+        "title": "ROS 2 Communication Model"
+      },
+      {
+        "number": 3,
+        "title": "Python AI Agents and rclpy"
+      },
+      {
+        "number": 4,
+        "title": "URDF and Humanoid Structure"
+      }
+    ],
+    "target_audience": "AI developers and software engineers new to robotics",
+    "learning_outcomes": [
+      "Understand Physical AI and embodied intelligence",
+      "Explain ROS 2 as distributed robotic middleware",
+      "Understand nodes, topics, services, and actions",
+      "Understand how Python AI agents connect via rclpy",
+      "Read and interpret humanoid URDF files"
+    ]
+  }
+}
+```

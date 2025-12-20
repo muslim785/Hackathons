@@ -1,0 +1,114 @@
+/**
+ * CSS module for Header component
+ */
+
+.navbar {
+  background: var(--ifm-color-gradient-header) !important;
+  backdrop-filter: blur(10px) !important;
+  border-bottom: 1px solid var(--ifm-ai-border-color) !important;
+  border-bottom-width: var(--ifm-ai-border-width) !important;
+  border-bottom-style: var(--ifm-ai-border-style) !important;
+  transition: var(--ifm-transition-normal) !important;
+}
+
+.navbarInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbarTitle {
+  color: var(--ifm-color-primary) !important;
+  font-weight: 600 !important;
+}
+
+.navbarSearchInput {
+  background-color: rgba(18, 18, 24, 0.5) !important;
+  border: 1px solid var(--ifm-ai-border-color) !important;
+  border-radius: 12px !important;
+  padding: 0.5rem 1rem !important;
+  color: var(--ifm-text-color) !important;
+  transition: var(--ifm-transition-normal) !important;
+  margin-right: 1rem !important;
+}
+
+.navbarSearchInput:focus {
+  outline: none !important;
+  border-color: var(--ifm-color-primary) !important;
+  box-shadow: 0 0 0 3px rgba(100, 255, 218, 0.2) !important;
+}
+
+.navbarToggle {
+  background: none !important;
+  border: 1px solid var(--ifm-ai-border-color) !important;
+  border-radius: 8px !important;
+  color: var(--ifm-text-color) !important;
+  padding: 0.5rem !important;
+  cursor: pointer !important;
+  display: none !important; /* Default to hidden on desktop */
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.navbarToggleIcon {
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  stroke: var(--ifm-text-color) !important;
+}
+
+.searchForm {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.searchButton {
+  border-radius: 0 8px 8px 0 !important;
+  border: none !important;
+  margin-left: -1px !important;
+  z-index: 1 !important;
+}
+
+.navbarMobileItems {
+  display: none !important;
+  flex-direction: column !important;
+  background: var(--ifm-background-surface-color) !important;
+  border-top: 1px solid var(--ifm-ai-border-color) !important;
+  padding: 1rem !important;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 999 !important;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Mobile styles */
+@media (max-width: 996px) {
+  .navbarToggle {
+    display: flex !important;
+  }
+
+  .navbarItemsRight {
+    align-items: center !important;
+  }
+
+  .navbarSearchInput {
+    margin-right: 0.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbarMobileItems {
+    display: flex !important;
+  }
+
+  .navbarItems {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .navbarItemsRight {
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+}

@@ -1,0 +1,89 @@
+# Content Structure Contract for Digital Twin Simulation Module
+
+openapi: 3.0.0
+info:
+  title: Digital Twin Simulation Module Content Structure
+  version: 1.0.0
+  description: Contract for the content structure of Module 2 in the Physical AI & Humanoid Robotics Textbook
+
+paths:
+  /module-2/chapter-1:
+    get:
+      summary: Digital Twins and Simulation in Physical AI
+      description: Content covering digital twin concepts, simulation necessity, and sim-to-real gap
+      responses:
+        '200':
+          description: Chapter content with sections on:
+            - Definition of digital twins in robotics
+            - Why simulation is required for Physical AI
+            - Sim-to-real gap and its implications
+            - Relationship between URDF and simulation engines
+            - Limits of simulation
+
+  /module-2/chapter-2:
+    get:
+      summary: Physics Simulation with Gazebo
+      description: Content covering Gazebo's role in ROS 2 and physics simulation concepts
+      responses:
+        '200':
+          description: Chapter content with sections on:
+            - Gazebo's role in ROS 2 ecosystems
+            - Simulating gravity, collisions, and rigid bodies
+            - Robot-environment interaction
+            - Time, determinism, and simulation accuracy
+            - Gazebo vs real-world behavior (conceptual)
+
+  /module-2/chapter-3:
+    get:
+      summary: High-Fidelity Environments with Unity
+      description: Content covering Unity's role in robotics workflows and visualization
+      responses:
+        '200':
+          description: Chapter content with sections on:
+            - Unity's role in robotics workflows
+            - Visual realism vs physical realism
+            - Human-robot interaction simulation
+            - When Unity complements Gazebo
+            - Tradeoffs between engines
+
+  /module-2/chapter-4:
+    get:
+      summary: Simulated Sensors for Humanoid Robots
+      description: Content covering sensor simulation concepts for perception pipelines
+      responses:
+        '200':
+          description: Chapter content with sections on:
+            - Why sensor simulation matters
+            - LiDAR simulation fundamentals
+            - Depth and RGB camera simulation
+            - IMU simulation and noise
+            - Preparing perception pipelines for Module 3
+
+components:
+  schemas:
+    ChapterContent:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the chapter
+        sections:
+          type: array
+          items:
+            type: string
+          description: List of section titles in the chapter
+        learningObjectives:
+          type: array
+          items:
+            type: string
+          description: List of learning objectives for the chapter
+        keyTerms:
+          type: array
+          items:
+            type: string
+          description: List of key terms defined in the chapter
+        validationChecks:
+          type: array
+          items:
+            type: string
+          description: List of validation checks to ensure understanding

@@ -1,0 +1,90 @@
+# Content Structure Contract for Isaac AI Brain Module
+# Defines the expected content structure for the Docusaurus textbook module
+
+openapi: 3.0.0
+info:
+  title: Isaac AI Brain Module Content Structure
+  version: 1.0.0
+  description: Contract for the content structure of Module 3 in the Physical AI & Humanoid Robotics Textbook
+
+paths:
+  /module-3/chapter-1:
+    get:
+      summary: The AI Brain in Physical Robots
+      description: Content covering the "AI brain" concept in embodied systems, perception, mapping, and planning roles
+      responses:
+        '200':
+          description: Chapter content with sections on:
+            - Definition of the "AI brain" concept
+            - Perception, mapping, and planning roles
+            - Why acceleration matters in robotics
+            - NVIDIA Isaac's position in the robotics stack
+            - Sim-to-deployment workflow overview
+
+  /module-3/chapter-2:
+    get:
+      summary: Isaac Sim and Synthetic Data
+      description: Content covering Isaac Sim for photorealistic simulation and synthetic data generation
+      responses:
+        '200':
+          description: Chapter content with sections on:
+            - Photorealistic simulation purpose
+            - Synthetic data generation concepts
+            - Domain randomization explained conceptually
+            - Isaac Sim vs Gazebo roles comparison
+            - Connection to perception models
+
+  /module-3/chapter-3:
+    get:
+      summary: Isaac ROS and Accelerated Perception
+      description: Content covering Isaac ROS and hardware-accelerated perception concepts
+      responses:
+        '200':
+          description: Chapter content with sections on:
+            - Isaac ROS purpose and function
+            - Hardware acceleration on NVIDIA/Jetson platforms
+            - VSLAM explained conceptually (not algorithmically)
+            - Sensor fusion at system level
+            - Real-time constraints of edge devices
+
+  /module-3/chapter-4:
+    get:
+      summary: Navigation and Motion Planning (Nav2)
+      description: Content covering Nav2 framework for navigation and planning in humanoid robots
+      responses:
+        '200':
+          description: Chapter content with sections on:
+            - Why navigation is required for humanoid robots
+            - Mapping, localization, and planning flow
+            - Nav2 components explained conceptually
+            - Humanoid-specific movement constraints
+            - Transition to cognition concepts (Module 4)
+
+components:
+  schemas:
+    ChapterContent:
+      type: object
+      properties:
+        title:
+          type: string
+          description: The title of the chapter
+        sections:
+          type: array
+          items:
+            type: string
+          description: List of section titles in the chapter
+        learningObjectives:
+          type: array
+          items:
+            type: string
+          description: List of learning objectives for the chapter
+        keyTerms:
+          type: array
+          items:
+            type: string
+          description: List of key terms defined in the chapter
+        validationChecks:
+          type: array
+          items:
+            type: string
+          description: List of validation checks to ensure understanding
